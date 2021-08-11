@@ -1,9 +1,14 @@
+from game.game_handler import GameHandler
+
+
 class ApplicationHandler:
+    __game_handler: GameHandler
+
     def __init__(self):
-        pass
+        self.__game_handler = GameHandler()
 
     def update(self):
-        pass
+        self.__game_handler.update()
 
     def render(self):
-        pass
+        self.__game_handler.render()
