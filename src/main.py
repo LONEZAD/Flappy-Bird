@@ -29,8 +29,8 @@ class Main:
 
     def __render(self):
         self.__window_handler_instance.pygame_window_surface.fill((0, 0, 0))
-        pygame.display.flip()
         self.__application_handler.render()
+        pygame.display.flip()
 
     @staticmethod
     def __window_exit_callback() -> None:
