@@ -17,5 +17,5 @@ class GameHandler:
         pass
 
     @property
-    def shold_game_start(self) -> bool:
+    def should_game_start(self) -> bool:
         return False  # A dummy return value til the game is made

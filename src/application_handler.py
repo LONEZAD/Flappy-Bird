@@ -21,7 +21,7 @@ class ApplicationHandler:
     def update(self) -> None:
         if self.__game_handler is not None:
             self.__game_handler.update()
-            if self.__game_handler.shold_game_start:
+            if self.__game_handler.should_game_start:
                 self.__end_game()
         if self.__menu_handler is not None:
             self.__menu_handler.update()
