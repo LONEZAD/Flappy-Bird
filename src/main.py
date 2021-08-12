@@ -1,9 +1,9 @@
 import sys
 import pygame
 
-from window_handler import WindowHandler
-from event_handler import EventHandler
-from application_handler import ApplicationHandler
+from src.window_handler import WindowHandler
+from src.event_handler import EventHandler
+from src.application_handler import ApplicationHandler
 
 
 class Main:
