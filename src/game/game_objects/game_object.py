@@ -56,9 +56,12 @@ class GameObject:  # Someone clean this class up!!!
             raise FileNotFoundError("The file " + path + " was not found.\n" +
                                     "Please make sure that the path is relative to the assets folder")
 
-    def _set_size(self, size_percentage: Annotated[list[float], 2]):
+    def _set_size(self, size_percentage: Annotated[list[float], 2]) -> None:
         self.__size_percentage = size_percentage
         self.__update_image()
 
-    def _set_position(self, position_percentage: Annotated[list[float], 2]):
+    def _set_position(self, position_percentage: Annotated[list[float], 2]) -> None:
         self.__position_percentage = position_percentage
+
+    def _get_position(self) -> Annotated[list[float], 2]:
+        return self.__position_percentage
