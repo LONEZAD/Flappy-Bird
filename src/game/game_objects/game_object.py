@@ -13,9 +13,10 @@ class GameObject:  # Someone clean this class up!!!
 
     def __init__(self) -> None:
         self.__window_handler_instance = WindowHandler()
-        self.__size_percentage = [50, 50]
-        self.__position_percentage = [50, 50]
+        self.__size_percentage = [50, 50]  # A default value
         self._set_image("default.png")
+        self._set_size([50, 50])
+        self._set_position([50, 50])
         event_handler_instance: EventHandler = EventHandler()
         event_handler_instance.add_event_callback(pygame.WINDOWRESIZED, self.__update_image)
 
@@ -54,3 +55,10 @@ class GameObject:  # Someone clean this class up!!!
         except FileNotFoundError:
             raise FileNotFoundError("The file " + path + " was not found.\n" +
                                     "Please make sure that the path is relative to the assets folder")
+
+    def _set_size(self, size_percentage: Annotated[list[float], 2]):
+        self.__size_percentage = size_percentage
+        self.__update_image()
+
+    def _set_position(self, position_percentage: Annotated[list[float], 2]):
+        self.__position_percentage = position_percentage
