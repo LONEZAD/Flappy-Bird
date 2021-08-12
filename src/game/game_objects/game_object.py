@@ -9,7 +9,7 @@ class GameObject:  # Someone clean this class up!!!
     __original_image: pygame.Surface
     __position_percentage: Annotated[list[float], 2]
     __size_percentage: Annotated[list[float], 2]
-    __window_handler: WindowHandler
+    __window_handler_instance: WindowHandler
 
     def __init__(self) -> None:
         self.__window_handler_instance = WindowHandler()
@@ -23,7 +23,7 @@ class GameObject:  # Someone clean this class up!!!
         pass
 
     def render(self) -> None:
-        self.__window_handler.pygame_window_surface.blit(self.__image_to_be_drawn, self.__absolute_position)
+        self.__window_handler_instance.pygame_window_surface.blit(self.__image_to_be_drawn, self.__absolute_position)
 
     @property
     def __absolute_position(self) -> list[int]:
