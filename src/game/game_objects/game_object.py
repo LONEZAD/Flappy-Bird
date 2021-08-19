@@ -60,6 +60,9 @@ class GameObject:  # Someone clean this class up!!!
         self.__size_percentage = size_percentage
         self.__update_image()
 
+    def _get_size(self) -> Annotated[list[float], 2]:
+        return self.__size_percentage
+
     def _set_position(self, position_percentage: Annotated[list[float], 2]) -> None:
         self.__position_percentage = position_percentage
 
