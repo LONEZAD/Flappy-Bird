@@ -14,7 +14,7 @@ class GameObject:  # Someone clean this class up!!!
     def __init__(self) -> None:
         self.__window_handler_instance = WindowHandler()
         self.__size_percentage = [50, 50]  # A default value
-        self._set_image("default.png")
+        self._set_image("images/default.png")
         self._set_size([50, 50])
         self._set_position([50, 50])
         event_handler_instance: EventHandler = EventHandler()

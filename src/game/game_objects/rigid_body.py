@@ -12,7 +12,7 @@ class RectangleRigidBody(MoveAbleGameObject, ABC):
 class CircularRigidBody(MoveAbleGameObject, ABC):
     def __init__(self):
         super().__init__()
-        self._set_image("circle_default.png")
+        self._set_image("images/circle_default.png")
 
     @property
     @abstractmethod

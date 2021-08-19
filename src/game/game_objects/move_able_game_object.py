@@ -9,7 +9,7 @@ class MoveAbleGameObject(GameObject):
 
     def __init__(self):
         super().__init__()
-        self._set_image("move_able_default.png")
+        self._set_image("images/move_able_default.png")
         # self.__velocity_percentage = [10, 10]
         self.__velocity_percentage = [0, 0]
         self.__acceleration_percentage = [0, 0]
