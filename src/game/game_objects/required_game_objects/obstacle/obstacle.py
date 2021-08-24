@@ -1,30 +1,41 @@
-from enum import Enum
 from src.game.game_objects.rigid_body import RectangleRigidBody
 
 
-class ObstacleType(Enum):
-    UPPER = "Upper"
-    LOWER = "Lower"
+class ObstacleType:
+    UPPER = "upper"
+    LOWER = "lower"
 
 
-class ObstacleConfigurationHelper(Enum):
+class ObstacleConfigurationHelper:
     WIDTH = "width"
     VELOCITY = "velocity"
     TYPE = "type"
     HEIGHT = "height"
     X_POSITION = "x-position"
+    IMAGE_PATH = "image-path"
 
 
 class Obstacle(RectangleRigidBody):
-    __defaults: dict
+    __defaults: dict = dict()  # A default value in case it is not initialised
 
     @classmethod
     def set_defaults(cls, defaults: dict) -> None:
         cls.__defaults = defaults
 
+    def __is_defaults_ready(self) -> bool:
+        return (
+                self.__defaults.get(ObstacleConfigurationHelper.WIDTH) is not None and
+                self.__defaults.get(ObstacleConfigurationHelper.VELOCITY) is not None and
+                self.__defaults.get(ObstacleConfigurationHelper.IMAGE_PATH) is not None
+        )
+
     def __init__(self, height: float, x_position: float, obstacle_type: ObstacleType) -> None:
+        if not self.__is_defaults_ready():
+            # TODO:- this should be the python equivalent of IllegalStateException
+            raise Exception(f"Defaults are not ready yet. {self.__defaults}")
+
         super(Obstacle, self).__init__()
-        self._set_image("images/obstacle.png")
+        self._set_image(self.__defaults[ObstacleConfigurationHelper.IMAGE_PATH])
 
         self._set_size([self.__defaults[ObstacleConfigurationHelper.WIDTH], height])
         self._set_velocity([self.__defaults[ObstacleConfigurationHelper.VELOCITY], 0])

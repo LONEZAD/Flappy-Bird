@@ -1,5 +1,5 @@
-from src.game.game_objects.required_game_objects.obstacle.obstacle import Obstacle, ObstacleType, \
-    ObstacleConfigurationHelper
+import json
+from src.game.game_objects.required_game_objects.obstacle.obstacle import Obstacle, ObstacleConfigurationHelper
 
 
 class ObstacleHandler:
@@ -14,37 +14,22 @@ class ObstacleHandler:
 
     @staticmethod
     def __get_obstacle_defaults() -> dict:
-        # TODO:- Refactor this to a config file
-        # A dummy configuration till we have a real config file
-        return {
-            ObstacleConfigurationHelper.WIDTH: 50,
-            ObstacleConfigurationHelper.VELOCITY: -100
-        }
+        with open("configurations/obstacle_defaults.json") as obstacle_defaults_file:
+            return json.load(obstacle_defaults_file)
 
     @staticmethod
     def __get_obstacle_configurations() -> list[dict]:
-        # TODO:- Refactor this to a config file
-        # A dummy configuration till we have a real config file
-        return [
-            {
-                ObstacleConfigurationHelper.TYPE: ObstacleType.LOWER,
-                ObstacleConfigurationHelper.X_POSITION: 10
-            },
-            {
-                ObstacleConfigurationHelper.TYPE: ObstacleType.UPPER,
-                ObstacleConfigurationHelper.X_POSITION: 10
-            }
-        ]
+        with open("configurations/obstacle_configuration.json") as obstacle_configuration_file:
+            return json.load(obstacle_configuration_file)
 
     @staticmethod
     def __generate_obstacles(obstacle_configurations: list[dict]) -> list[Obstacle]:
-        obstacles: list[Obstacle]
         obstacles = list()
         for obstacle_configuration in obstacle_configurations:
             obstacles.append(Obstacle(
-                10,
-                obstacle_configuration[ObstacleConfigurationHelper.X_POSITION],
-                obstacle_configuration[ObstacleConfigurationHelper.TYPE]
+                height=10,
+                x_position=obstacle_configuration[ObstacleConfigurationHelper.X_POSITION],
+                obstacle_type=obstacle_configuration[ObstacleConfigurationHelper.TYPE]
             ))
         return obstacles
 
